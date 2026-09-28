@@ -1,0 +1,2307 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#151010">
+  <meta name="robots" content="index,follow">
+  <title>EL CAPOTE｜CHASE</title>
+
+  <!-- Link preview / sharing -->
+  <meta name="description" content="三分間。逃亡者は館を逃げ、追撃者はその影を追う。EL CAPOTE館内追跡ゲーム。">
+  <link rel="canonical" href="https://summer-paradise-resort.github.io/-sp-explore/">
+
+  <meta property="og:title" content="EL CAPOTE｜CHASE">
+  <meta property="og:description" content="三分間。逃亡者は館を逃げ、追撃者はその影を追う。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://summer-paradise-resort.github.io/-sp-explore/">
+  <meta property="og:site_name" content="EL CAPOTE">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="EL CAPOTE｜CHASE">
+  <meta name="twitter:description" content="三分間。逃亡者は館を逃げ、追撃者はその影を追う。">
+
+  <meta name="apple-mobile-web-app-title" content="EL CAPOTE CHASE">
+  <style>
+    :root{
+      color-scheme:dark; --ink:#f8f3eb; --muted:#b9aaa0; --line:rgba(255,255,255,.12);
+      --panel:#211a1a; --panel2:#2b2020; --bg:#100d0d; --wine:#7c171d; --wine2:#bd323a;
+      --gold:#e4b55a; --green:#6fd19a; --danger:#ff8e8e; --shadow:0 18px 50px rgba(0,0,0,.35)
+    }
+    *{box-sizing:border-box} html{min-height:100%;background:var(--bg)}
+    body{min-height:100%;margin:0;color:var(--ink);background:
+      radial-gradient(circle at 85% -5%,rgba(135,25,31,.28),transparent 34rem),
+      linear-gradient(180deg,#171111 0%,#100d0d 46%,#0d0b0b 100%);
+      font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic UI","Yu Gothic",sans-serif;
+      -webkit-tap-highlight-color:transparent}
+    button,input{font:inherit} button{touch-action:manipulation}
+    .app{width:min(100%,760px);min-height:100vh;margin:auto}
+    .topbar{position:sticky;z-index:30;top:0;display:flex;align-items:center;justify-content:space-between;
+      min-height:72px;padding:calc(12px + env(safe-area-inset-top)) 18px 12px;border-bottom:1px solid var(--line);
+      background:rgba(16,13,13,.92);backdrop-filter:blur(18px)}
+    .brand{display:flex;align-items:center;gap:12px}.mark{display:grid;place-items:center;width:38px;height:38px;
+      border:1px solid rgba(228,181,90,.6);border-radius:50%;color:var(--gold);font:700 13px Georgia,serif}
+    .brand strong{display:block;letter-spacing:.08em;font:700 14px/1.2 Georgia,serif}
+    .brand small{display:block;margin-top:3px;color:var(--muted);font-size:10px;letter-spacing:.18em}
+    .status{display:inline-flex;align-items:center;gap:7px;padding:7px 10px;border:1px solid var(--line);
+      border-radius:999px;color:var(--muted);font-size:11px}.dot{width:8px;height:8px;border-radius:50%;background:#8e7f78}
+    .status.online{color:#dff8e9;border-color:rgba(111,209,154,.28)}.status.online .dot{background:var(--green)}
+    main{padding:18px 16px 80px}.hero{padding:18px 4px 20px}.eyebrow{margin:0 0 8px;color:var(--gold);
+      font:700 11px/1.4 Georgia,serif;letter-spacing:.18em}h1{margin:0;font:600 clamp(31px,8vw,48px)/1.02 Georgia,serif}
+    .hero p:last-child{max-width:40rem;margin:12px 0 0;color:var(--muted);font-size:13px;line-height:1.8}
+    .panel{margin-bottom:14px;padding:18px;border:1px solid rgba(228,181,90,.22);border-radius:20px;background:
+      radial-gradient(circle at 95% 0%,rgba(124,23,29,.26),transparent 18rem),var(--panel);box-shadow:var(--shadow)}
+    .panel h2,.panel h3{margin:0;font:600 24px/1.25 Georgia,serif}.panel p{color:var(--muted);font-size:12px;line-height:1.75}
+    .screen{display:none}.screen.active{display:block;animation:rise .2s ease-out}@keyframes rise{from{opacity:.5;transform:translateY(4px)}}
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.choice{min-height:118px;padding:16px;border:1px solid var(--line);
+      border-radius:17px;color:var(--ink);background:linear-gradient(145deg,rgba(255,255,255,.06),rgba(255,255,255,.018));text-align:left}
+    .choice:active{transform:scale(.98)}.choice strong{display:block;font-size:16px}.choice small{display:block;margin-top:8px;color:var(--muted);line-height:1.55}
+    .choice.selected{border-color:rgba(228,181,90,.7);background:linear-gradient(145deg,rgba(124,23,29,.38),rgba(255,255,255,.04))}
+    .icon{display:block;margin-bottom:14px;color:var(--gold);font:700 26px Georgia,serif}
+    .input{width:100%;min-height:50px;padding:0 14px;border:1px solid var(--line);border-radius:13px;outline:none;color:var(--ink);
+      background:rgba(0,0,0,.28);font-size:16px}.input:focus{border-color:var(--gold)}
+    .btn{width:100%;min-height:48px;margin-top:12px;border:1px solid rgba(228,181,90,.65);border-radius:13px;color:#1b1410;
+      background:linear-gradient(180deg,#efc975,#dbaa4e);font-weight:800}.btn:disabled{opacity:.4}
+    .btn.secondary{color:var(--muted);background:rgba(255,255,255,.03);border-color:var(--line)}
+    .btn.danger{color:#ffeaea;background:rgba(124,23,29,.5);border-color:rgba(255,142,142,.35)}
+    .tiny{margin-top:10px;color:var(--muted);font-size:10px;line-height:1.6}.error{min-height:18px;margin-top:8px;color:var(--danger);font-size:11px}
+    .roleline{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+    .roleline:last-child{border-bottom:0}.roleline span{color:var(--muted);font-size:11px}.roleline strong{font-size:14px}
+    .wait{padding:24px 10px;text-align:center}.spinner{width:38px;height:38px;margin:0 auto 16px;border:1px solid var(--gold);border-radius:50%;
+      border-right-color:transparent;animation:turn 1s linear infinite}@keyframes turn{to{transform:rotate(360deg)}}
+    .item-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.item{min-height:145px;padding:13px 10px;border:1px solid var(--line);
+      border-radius:16px;color:var(--ink);background:rgba(255,255,255,.035);text-align:center}.item.selected{border-color:var(--gold);background:rgba(124,23,29,.32)}
+    .item .icon{font-size:31px}.item strong{display:block;font-size:13px}.item small{display:block;margin-top:8px;color:var(--muted);font-size:10px;line-height:1.5}
+    .timer{font:600 clamp(46px,15vw,72px)/1 Georgia,serif;text-align:center;letter-spacing:.02em}.timer.warn{color:#ffb2b2}
+    .location{margin-top:14px;padding:15px;border:1px solid rgba(228,181,90,.28);border-radius:16px;text-align:center;background:rgba(0,0,0,.18)}
+    .location small{display:block;color:var(--muted);font-size:10px;letter-spacing:.12em}.location strong{display:block;margin-top:5px;font:600 25px Georgia,serif}
+    .travel{margin-top:12px}.travelbar{height:7px;overflow:hidden;border-radius:999px;background:rgba(255,255,255,.08)}
+    .travelbar i{display:block;height:100%;width:0;background:var(--gold);transition:width .12s linear}.traveltext{margin-top:7px;color:var(--muted);font-size:11px;text-align:center}
+    .room-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px}.room{min-height:76px;padding:12px;border:1px solid var(--line);
+      border-radius:14px;color:var(--ink);background:rgba(255,255,255,.035);text-align:left}.room:disabled{opacity:.35}.room small{display:block;color:var(--gold);font-size:9px}.room strong{display:block;margin-top:5px;font-size:13px}
+    .whisper{margin-top:12px;padding:12px 13px;border-left:2px solid var(--gold);background:rgba(228,181,90,.06);font-family:Georgia,"Yu Mincho",serif;font-size:12px;line-height:1.7}
+    .chat{display:flex;flex-direction:column;height:250px;overflow:auto;margin-top:12px;padding:10px;border:1px solid var(--line);border-radius:14px;background:rgba(0,0,0,.18)}
+    .msg{max-width:86%;margin:4px 0;padding:9px 11px;border-radius:12px;background:rgba(255,255,255,.06);font-size:12px;line-height:1.55}
+    .msg.mine{align-self:flex-end;background:rgba(124,23,29,.38)}.msg small{display:block;margin-bottom:3px;color:var(--muted);font-size:9px}
+    .compose{display:grid;grid-template-columns:1fr auto;gap:8px;margin-top:8px}.compose input{min-width:0}.send{min-width:74px;border:1px solid rgba(228,181,90,.5);border-radius:12px;color:#1b1410;background:var(--gold);font-weight:800}
+    .result{text-align:center}.result .big{color:var(--gold);font:600 38px Georgia,serif}.result p{font-size:13px}
+    .spectate-card{display:grid;grid-template-columns:1fr 1fr;gap:10px}.person{padding:14px;border:1px solid var(--line);border-radius:15px;background:rgba(255,255,255,.035)}
+    .person small{color:var(--muted);font-size:9px}.person strong{display:block;margin-top:4px}.person em{display:block;margin-top:8px;color:var(--gold);font-style:normal;font-size:12px}
+    .log{margin-top:12px;max-height:360px;overflow:auto}.logrow{padding:10px 3px;border-bottom:1px solid rgba(255,255,255,.07);font-size:11px;line-height:1.6}
+    .logrow time{color:var(--muted);margin-right:7px}.badge{display:inline-block;padding:4px 7px;border:1px solid var(--line);border-radius:999px;color:var(--muted);font-size:9px}
+
+    body.game-compact .hero{display:none}
+    body.game-compact main{padding-top:10px}
+    body.game-compact .topbar{min-height:62px;padding-top:calc(8px + env(safe-area-inset-top));padding-bottom:8px}
+    body.game-compact #chaseScreen>.panel{margin-bottom:8px;padding:11px 12px;border-radius:16px}
+    body.game-compact #chaseScreen>.panel:first-child{padding:9px 12px}
+    body.game-compact #chaseScreen .timer{font-size:38px;line-height:1}
+    body.game-compact #chaseScreen .location{margin-top:7px;padding:8px 10px;border-radius:12px}
+    body.game-compact #chaseScreen .location small{font-size:8px}
+    body.game-compact #chaseScreen .location strong{margin-top:2px;font-size:18px}
+    body.game-compact #chaseScreen .travel{margin-top:7px}
+    body.game-compact #chaseScreen .room-grid{gap:7px;margin-top:8px}
+    body.game-compact #chaseScreen .room{min-height:56px;padding:8px 10px;border-radius:11px}
+    body.game-compact #chaseScreen .room strong{margin-top:3px;font-size:12px}
+    body.game-compact #chaseScreen .eyebrow{margin-bottom:4px;font-size:9px}
+    body.game-compact #chaseScreen h3{font-size:18px}
+    body.game-compact #chaseScreen .panel p{margin:6px 0;font-size:10px;line-height:1.55}
+    body.game-compact #soloChat{height:112px;margin-top:7px}
+    body.game-compact #chaseScreen .input{min-height:42px}
+    body.game-compact #chaseScreen .send{min-width:68px}
+    .move-lock-note{margin:6px 0 0;color:#f2c96d!important;font-size:10px!important;text-align:center}
+    .adjacent-alert{
+      margin:7px 0 0;
+      padding:8px 10px;
+      border:1px solid rgba(255,72,72,.62);
+      border-radius:10px;
+      color:#ff7070;
+      background:rgba(120,10,18,.22);
+      font-size:12px;
+      font-weight:900;
+      text-align:center;
+      letter-spacing:.04em;
+    }
+
+    .trap-alert{
+      margin:8px 0 0;
+      padding:11px 12px;
+      border:1px solid rgba(255,70,70,.62);
+      border-radius:12px;
+      background:linear-gradient(145deg,rgba(110,8,16,.38),rgba(40,8,10,.54));
+      color:#ffd4d4;
+      font-size:11px;
+      line-height:1.65;
+    }
+    .trap-alert strong{
+      display:block;
+      margin-bottom:4px;
+      color:#ff5555;
+      font-size:13px;
+    }
+    #specTrapAlert{
+      margin-top:12px;
+      border-width:2px;
+      color:#ffd6d6;
+      background:linear-gradient(145deg,rgba(130,8,18,.52),rgba(45,8,12,.72));
+      font-size:12px;
+    }
+    #specTrapAlert strong{
+      color:#ff4b4b;
+      font-size:15px;
+      letter-spacing:.03em;
+    }
+    .trap-countdown{
+      color:#ffd36a;
+      font-weight:900;
+    }
+
+    .pursuit-banner{
+      margin:8px 0 0;
+      padding:9px 12px;
+      border-radius:11px;
+      font-family:Georgia,"Yu Mincho","Hiragino Mincho ProN",serif;
+      font-size:13px;
+      font-weight:700;
+      line-height:1.55;
+      text-align:center;
+      letter-spacing:.02em;
+    }
+    .pursuit-banner.runner{
+      color:#ffd7d7;
+      border:1px solid rgba(255,92,92,.4);
+      background:rgba(120,18,25,.32);
+    }
+    .pursuit-banner.hunter{
+      color:#f7dfaa;
+      border:1px solid rgba(228,181,90,.4);
+      background:rgba(228,181,90,.08);
+    }
+
+    #encounterScreen .encounter-alert{
+      border-color:rgba(255,74,74,.72);
+      background:linear-gradient(145deg,rgba(105,8,12,.72),rgba(34,12,12,.96));
+      box-shadow:0 0 0 1px rgba(255,90,90,.12),0 18px 50px rgba(0,0,0,.45)
+    }
+    #encounterScreen #encounterTitle{
+      color:#ff3f3f!important;
+      font-size:clamp(52px,14vw,76px);
+      font-weight:900;
+      line-height:1;
+      letter-spacing:.03em;
+      text-shadow:0 0 24px rgba(255,45,45,.28);
+    }
+    #encounterScreen #encounterText{
+      color:#ffd4d4;
+      font-size:14px;
+      font-weight:800;
+    }
+    #encounterItemSelect{
+      margin-top:16px;
+      padding-top:14px;
+      border-top:1px solid rgba(255,255,255,.12);
+    }
+    #encounterItemSelect h3{
+      margin:0 0 6px;
+      font:600 22px Georgia,"Yu Mincho",serif;
+    }
+    #encounterItemStatus{
+      margin:8px 0 0;
+      color:var(--gold);
+      font-size:11px;
+      text-align:center;
+    }
+    #encounterScreen .chat{height:45vh;min-height:280px}
+    #winnerEndActions{margin-top:14px}
+    #winnerWaiting{margin-top:12px;color:var(--muted);font-size:11px}
+
+    .duel-result{
+      text-align:center;
+      padding:26px 18px;
+      border:1px solid rgba(228,181,90,.28);
+      border-radius:20px;
+      background:
+        radial-gradient(circle at 50% 15%,rgba(124,23,29,.30),transparent 18rem),
+        var(--panel);
+      box-shadow:var(--shadow);
+    }
+    .duel-result .result-word{
+      margin-top:8px;
+      font:900 clamp(48px,14vw,76px)/1 Georgia,"Yu Mincho",serif;
+      letter-spacing:.04em;
+    }
+    .duel-result.win .result-word{color:#f0c86d}
+    .duel-result.draw .result-word{color:#e8ddd5}
+    .duel-result.lose .result-word{color:#ff6666}
+    .duel-result .result-copy{
+      margin:14px 0 0;
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.8;
+    }
+    .duel-items{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      margin-top:18px;
+    }
+    .duel-item{
+      padding:12px;
+      border:1px solid var(--line);
+      border-radius:13px;
+      background:rgba(255,255,255,.035);
+    }
+    .duel-item small{display:block;color:var(--muted);font-size:9px}
+    .duel-item strong{display:block;margin-top:5px;font-size:15px}
+
+    .logrow.move-log strong,.logrow.move-log .log-message{color:#e4b55a}
+    .logrow.monologue-log strong,.logrow.monologue-log .log-message{color:#8fc7ff}
+    .logrow.encounter-log strong,.logrow.encounter-log .log-message{color:#ff7b7b}
+    .logrow.system-log strong,.logrow.system-log .log-message{color:#c8bbb2}
+
+    /* 観戦用・館内ライブマップ */
+    .spectator-map-wrap{
+      margin-top:14px;
+      padding:10px;
+      overflow:hidden;
+      border:1px solid rgba(228,181,90,.24);
+      border-radius:16px;
+      background:
+        radial-gradient(circle at 50% 45%,rgba(124,23,29,.13),transparent 55%),
+        rgba(0,0,0,.22);
+    }
+    .spectator-map-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:8px;
+    }
+    .spectator-map-head strong{
+      font:600 14px Georgia,"Yu Mincho",serif;
+    }
+    .map-legend{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      color:var(--muted);
+      font-size:9px;
+    }
+    .map-legend span{display:inline-flex;align-items:center;gap:5px}
+    .map-dot-key{
+      width:8px;height:8px;border-radius:50%;display:inline-block
+    }
+    .map-dot-key.runner{background:#78bfff}
+    .map-dot-key.hunter{background:#ff6464}
+
+    #chaseMap{
+      display:block;
+      width:100%;
+      height:auto;
+      aspect-ratio: 4 / 5;
+      border-radius:12px;
+      background:
+        linear-gradient(180deg,rgba(35,24,22,.82),rgba(10,8,8,.96));
+    }
+    .map-ground-line{
+      stroke:rgba(228,181,90,.22);
+      stroke-width:2;
+      stroke-dasharray:7 7;
+    }
+    .map-edge{
+      fill:none;
+      stroke:rgba(228,181,90,.20);
+      stroke-width:4.5;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+    }
+    .map-node{
+      fill:#241b1a;
+      stroke:rgba(228,181,90,.48);
+      stroke-width:1.5;
+      rx:11;
+      ry:11;
+    }
+    .map-node-label{
+      fill:#d8c9bd;
+      font-size:8px;
+      text-anchor:middle;
+      dominant-baseline:middle;
+      pointer-events:none;
+    }
+    .map-player-ring{
+      fill:none;
+      stroke-width:5;
+      opacity:.22;
+    }
+    .map-player{
+      stroke:#100d0d;
+      stroke-width:2.5;
+    }
+    .map-player.runner{fill:#78bfff}
+    .map-player.hunter{fill:#ff6464}
+    .map-player-ring.runner{stroke:#78bfff}
+    .map-player-ring.hunter{stroke:#ff6464}
+    .map-player-label{
+      fill:#f8f3eb;
+      font-size:8px;
+      font-weight:800;
+      paint-order:stroke;
+      stroke:#100d0d;
+      stroke-width:3px;
+      stroke-linejoin:round;
+    }
+    .map-encounter-ring{
+      fill:none;
+      stroke:#ff4444;
+      stroke-width:4;
+      opacity:.85;
+    }
+
+    .map-monologues{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      margin-top:10px;
+    }
+    .map-monologue{
+      min-height:88px;
+      padding:11px 12px;
+      border:1px solid var(--line);
+      border-radius:13px;
+      background:rgba(255,255,255,.025);
+    }
+    .map-monologue.runner{
+      border-color:rgba(120,191,255,.28);
+      background:rgba(120,191,255,.05);
+    }
+    .map-monologue.hunter{
+      border-color:rgba(255,100,100,.28);
+      background:rgba(255,100,100,.05);
+    }
+    .map-monologue small{
+      display:block;
+      margin-bottom:6px;
+      color:var(--muted);
+      font-size:9px;
+      letter-spacing:.08em;
+    }
+    .map-monologue strong{
+      display:block;
+      margin-bottom:6px;
+      font-size:11px;
+    }
+    .map-monologue p{
+      margin:0;
+      color:var(--ink);
+      font-family:Georgia,"Yu Mincho","Hiragino Mincho ProN",serif;
+      font-size:12px;
+      line-height:1.6;
+      word-break:break-word;
+    }
+    .map-monologue .empty{
+      color:var(--muted);
+      font-style:italic;
+    }
+
+    .hidden{display:none!important}.toast{position:fixed;z-index:80;right:16px;bottom:18px;left:16px;width:min(calc(100% - 32px),520px);margin:auto;
+      padding:13px 15px;border:1px solid rgba(228,181,90,.35);border-radius:13px;background:rgba(38,29,29,.97);box-shadow:var(--shadow);
+      opacity:0;pointer-events:none;transform:translateY(8px);transition:.2s;font-size:12px}.toast.show{opacity:1;transform:none}
+    @media(min-width:620px){main{padding-inline:24px}.room-grid{grid-template-columns:repeat(4,1fr)}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+  </style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand"><div class="mark">EC</div><div><strong>EL CAPOTE</strong><small>PRIVATE CHASE</small></div></div>
+    <div class="status" id="status"><span class="dot"></span><span id="statusText">接続中</span></div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow">MATADOR'S HOUSE / CHASE GAME</p>
+      <h1>館を、<br>逃げ切れ。</h1>
+      <p>三分間。逃亡者は館内を逃げ、追撃者はその影を追う。。</p>
+    </section>
+
+    <section class="screen active" id="roleScreen">
+      <div class="panel">
+        <p class="eyebrow">STEP 01 / ROLE</p><h2>役割を選ぶ</h2>
+        <p>逃亡者と追撃者は各一名。すでに選ばれた役割には参加できません。</p>
+        <div class="grid2">
+          <button class="choice" data-role="runner"><span class="icon">↝</span><strong>逃亡者</strong><small>三分間逃げ切るか、遭遇時のアイテム勝負に勝てば勝利。</small></button>
+          <button class="choice" data-role="hunter"><span class="icon">⌖</span><strong>追撃者</strong><small>三分以内に遭遇し、アイテム勝負でも勝てば勝利。</small></button>
+        </div>
+        <button class="btn secondary" id="spectateBtn">観戦する</button>
+        <button class="btn danger" id="resetGameBtn">ゲームを全体リセットする</button>
+        <p class="tiny">誰でも操作できます。押すと現在のゲームを終了し、全員を新しいゲームの初期状態へ戻します。</p>
+      </div>
+    </section>
+
+    <section class="screen" id="nameScreen">
+      <div class="panel">
+        <p class="eyebrow">STEP 02 / NAME</p><h2>名を告げる</h2>
+        <p id="chosenRoleText"></p>
+        <input id="nameInput" class="input" maxlength="12" autocomplete="off" autocapitalize="off" placeholder="表示名（12文字まで）">
+        <div class="error" id="nameError"></div>
+        <button class="btn" id="joinBtn">この名前で参加</button>
+        <button class="btn secondary" id="backRoleBtn">役割を選び直す</button>
+      </div>
+    </section>
+
+    <section class="screen" id="lobbyScreen">
+      <div class="panel">
+        <p class="eyebrow">LOBBY</p><h2>相手を待つ</h2>
+        <div class="roleline"><span>逃亡者</span><strong id="runnerLobby">待機中…</strong></div>
+        <div class="roleline"><span>追撃者</span><strong id="hunterLobby">待機中…</strong></div>
+        <div class="wait"><div class="spinner"></div><p id="lobbyText">二人が揃うまでゲームは始まりません。</p></div>
+      </div>
+    </section>
+
+    <section class="screen" id="itemScreen">
+      <div class="panel">
+        <p class="eyebrow">STEP 03 / ITEM</p><h2>ひとつ選ぶ</h2>
+        <p>相手の選択は、遭遇するまで見えません。</p>
+        <div class="item-grid">
+          <button class="item" data-item="rope"><span class="icon">∞</span><strong>ロープ</strong><small>捕えたものを、簡単には逃がさない。</small></button>
+          <button class="item" data-item="blindfold"><span class="icon">◐</span><strong>目隠し</strong><small>見えなければ、刃先も意味を失う。</small></button>
+          <button class="item" data-item="knife"><span class="icon">†</span><strong>ナイフ</strong><small>結び目も、布も、まとめて裂く。</small></button>
+        </div>
+        <button class="btn" id="lockItemBtn" disabled>これを持っていく</button>
+      </div>
+    </section>
+
+    <section class="screen" id="readyScreen">
+      <div class="panel">
+        <p class="eyebrow">READY</p><h2>扉の向こうへ</h2>
+        <p id="readyText">相手の準備を待っています。</p>
+        <div class="location"><small>STARTING ROOM</small><strong id="startRoom">—</strong></div>
+        <button class="btn" id="readyBtn">準備完了</button>
+      </div>
+    </section>
+
+    <section class="screen" id="chaseScreen">
+      <div class="panel">
+        <div class="timer" id="timer">03:00</div>
+        <div class="location"><small>CURRENT ROOM</small><strong id="currentRoom">—</strong></div>
+        <div class="pursuit-banner hidden" id="pursuitBanner"></div>
+        <div class="trap-alert hidden" id="runnerTrapAlert"></div>
+        <div class="trap-alert hidden" id="hunterTrapAlert"></div>
+        <div class="travel hidden" id="travelWrap"><div class="travelbar"><i id="travelBar"></i></div><div class="traveltext" id="travelText"></div></div>
+        <div class="whisper hidden" id="whisperBox"></div>
+      </div>
+      <div class="panel">
+        <p class="eyebrow">MOVE</p><h3>次の部屋</h3>
+        <div class="adjacent-alert hidden" id="adjacentAlert">隣の部屋にいる！</div>
+        <p class="move-lock-note" id="moveLockNote">一言つぶやくと、次の部屋へ進めます。</p>
+        <div class="room-grid" id="roomButtons"></div>
+      </div>
+      <div class="panel">
+        <p class="eyebrow">MONOLOGUE</p><h3>独り言</h3>
+        <p>自分と相手の独り言が常に聞こえます。隣室にいる時は、移動欄に警告が出ます。</p>
+        <div class="chat" id="soloChat"></div>
+        <div class="compose"><input class="input" id="soloInput" maxlength="120" placeholder="独り言を入力"><button class="send" id="soloSend">送信</button></div>
+      </div>
+    </section>
+
+    <section class="screen" id="encounterScreen">
+      <div class="panel result encounter-alert">
+        <p class="eyebrow">ENCOUNTER</p><div class="big" id="encounterTitle">遭遇した！</div>
+        <p id="encounterText"></p>
+
+        <div id="encounterItemSelect">
+          <h3>決着のアイテムを選ぶ</h3>
+          <p class="tiny">相手の選択は、二人とも決定するまで見えません。</p>
+          <div class="item-grid">
+            <button class="item encounter-item" data-encounter-item="rope"><span class="icon">∞</span><strong>ロープ</strong><small>目隠しに強い</small></button>
+            <button class="item encounter-item" data-encounter-item="blindfold"><span class="icon">◐</span><strong>目隠し</strong><small>ナイフに強い</small></button>
+            <button class="item encounter-item" data-encounter-item="knife"><span class="icon">†</span><strong>ナイフ</strong><small>ロープに強い</small></button>
+          </div>
+          <button class="btn" id="encounterItemConfirm" disabled>このアイテムで決める</button>
+          <p id="encounterItemStatus">ひとつ選んでください。</p>
+        </div>
+
+        <div id="encounterReveal" class="hidden">
+          <div class="roleline"><span>あなた</span><strong id="myItemReveal">—</strong></div>
+          <div class="roleline"><span>相手</span><strong id="opItemReveal">—</strong></div>
+        </div>
+
+        <div id="drawActions" class="hidden">
+          <button class="btn" id="continueBtn">ゲームを続ける</button>
+          <button class="btn danger" id="endDrawBtn">ここで終了する</button>
+          <p class="tiny">どちらか一方が「終了」を選んだ時点で終了します。両者が「続ける」を選んだ場合のみ再開します。</p>
+        </div>
+        <div id="winnerEndActions" class="hidden">
+          <button class="btn danger" id="winnerEndBtn">このゲームを終了する</button>
+          <p class="tiny">勝者だけが終了のタイミングを決められます。</p>
+        </div>
+        <p id="winnerWaiting" class="hidden">勝者がゲームを終了するまで、この場に留まります。</p>
+      </div>
+      <div class="panel">
+        <p class="eyebrow">ENCOUNTER CHAT</p><h3>二人の会話</h3>
+        <div class="chat" id="encounterChat"></div>
+        <div class="compose"><input class="input" id="encounterInput" maxlength="160" placeholder="相手に話しかける"><button class="send" id="encounterSend">送信</button></div>
+      </div>
+    </section>
+
+    <section class="screen" id="duelResultScreen">
+      <div class="duel-result" id="duelResultPanel">
+        <p class="eyebrow">RESULT</p>
+        <div class="result-word" id="duelResultWord">—</div>
+        <p class="result-copy" id="duelResultCopy"></p>
+
+        <div class="duel-items">
+          <div class="duel-item">
+            <small>あなたのアイテム</small>
+            <strong id="duelMyItem">—</strong>
+          </div>
+          <div class="duel-item">
+            <small>相手のアイテム</small>
+            <strong id="duelOpponentItem">—</strong>
+          </div>
+        </div>
+
+        <div id="duelDrawActions" class="hidden">
+          <button class="btn" id="duelContinueBtn">ゲームを続ける</button>
+          <button class="btn danger" id="duelEndDrawBtn">ここで終了する</button>
+          <p class="tiny">どちらか一方が終了を選んだ時点で終了します。</p>
+        </div>
+
+        <div id="duelWinnerEndActions" class="hidden">
+          <button class="btn danger" id="duelWinnerEndBtn">このゲームを終了する</button>
+          <p class="tiny">勝者だけが終了のタイミングを決められます。</p>
+        </div>
+
+        <p id="duelWinnerWaiting" class="hidden">勝者がゲームを終了するまで、この場に留まります。</p>
+      </div>
+
+      <div class="panel">
+        <p class="eyebrow">ENCOUNTER CHAT</p>
+        <h3>二人の会話</h3>
+        <div class="chat" id="duelResultChat"></div>
+        <div class="compose">
+          <input class="input" id="duelResultInput" maxlength="160" placeholder="相手に話しかける">
+          <button class="send" id="duelResultSend">送信</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" id="resultScreen">
+      <div class="panel result">
+        <p class="eyebrow">GAME OVER</p><div class="big" id="resultTitle">—</div><p id="resultText"></p>
+        <button class="btn secondary" id="newGameBtn">このゲームを終了する</button>
+      </div>
+      <div class="panel" id="resultChatPanel">
+        <p class="eyebrow">AFTER TALK</p><h3>遭遇後の会話</h3>
+        <div class="chat" id="resultChat"></div>
+        <div class="compose"><input class="input" id="resultInput" maxlength="160" placeholder="話す"><button class="send" id="resultSend">送信</button></div>
+      </div>
+    </section>
+
+    <section class="screen" id="spectateScreen">
+      <div class="panel">
+        <p class="eyebrow">SPECTATOR / LIVE</p><h2>館内を覗く</h2>
+        <p>観戦者には、二人の現在地・移動先・独り言・遭遇後の会話がすべて表示されます。</p>
+        <div class="timer" id="specTimer">03:00</div>
+        <div class="spectate-card">
+          <div class="person"><small>RUNNER</small><strong id="specRunnerName">—</strong><em id="specRunnerRoom">—</em><span class="badge" id="specRunnerItem">ITEM ?</span></div>
+          <div class="person"><small>HUNTER</small><strong id="specHunterName">—</strong><em id="specHunterRoom">—</em><span class="badge" id="specHunterItem">ITEM ?</span></div>
+        </div>
+
+        <div class="spectator-map-wrap">
+          <div class="spectator-map-head">
+            <strong>館内断面 LIVE MAP</strong>
+            <div class="map-legend">
+              <span><i class="map-dot-key runner"></i>逃亡者</span>
+              <span><i class="map-dot-key hunter"></i>追撃者</span>
+            </div>
+          </div>
+          <svg id="chaseMap" viewBox="0 0 500 625" role="img" aria-label="EL CAPOTE館内ライブマップ"></svg>
+
+          <div class="map-monologues">
+            <div class="map-monologue runner">
+              <small>RUNNER / 一言</small>
+              <strong id="mapRunnerMeta">—</strong>
+              <p id="mapRunnerMonologue" class="empty">まだ一言はない。</p>
+            </div>
+            <div class="map-monologue hunter">
+              <small>HUNTER / 一言</small>
+              <strong id="mapHunterMeta">—</strong>
+              <p id="mapHunterMonologue" class="empty">まだ一言はない。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="trap-alert hidden" id="specTrapAlert"></div>
+        <div class="adjacent-alert hidden" id="specEncounterAlert">遭遇！</div>
+      </div>
+      <div class="panel"><p class="eyebrow">LIVE LOG</p><h3>すべての声と動き</h3><div class="log" id="spectateLog"></div></div>
+      <button class="btn secondary" id="leaveSpectateBtn">観戦をやめる</button>
+    </section>
+  </main>
+</div>
+<div class="toast" id="toast"></div>
+
+<script type="module">
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
+const SUPABASE_URL = "https://tkldsaomqezrlbsejkni.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_LQB2KQpcZhmsmQDnctbtmQ_-MsuxKfp";
+const supabase = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+
+const GAME_MS = 180000;
+const MOVE_MIN = 5000, MOVE_MAX = 8000;
+
+// 自動リセット
+// 開始前：最後の操作から2分
+// 開始後：最後の操作から5分
+const PRE_GAME_IDLE_RESET_MS = 2 * 60 * 1000;
+const POST_GAME_IDLE_RESET_MS = 5 * 60 * 1000;
+const STALE_CHECK_INTERVAL_MS = 10 * 1000;
+const ROOM_NAMES = {
+  "arena":"中央闘技場","portrait-gallery":"肖像回廊","study":"書斎","library":"図書室","reception-room":"応接室",
+  "lounge":"ラウンジ","billiards-room":"ビリヤード室","bar":"酒場","dining-room":"食堂","kitchen":"厨房",
+  "pantry":"パントリー","wine-cellar":"ワインセラー","costume-room":"衣裳室","dressing-room":"更衣室","mirror-room":"鏡の間",
+  "clinic":"診察室","treatment-room":"治療室","hernando-room":"エルナンドの自室","guest-room":"客間","bathroom":"浴室",
+  "chapel":"礼拝室","confessional":"告解室","servants-room":"使用人控室","linen-room":"リネン室","service-corridor":"使用人通路",
+  "back-stairs":"裏階段","underground-corridor":"地下廊下","underground-storage":"地下倉庫","torture-room":"拷問部屋","blind-spot-room":"盲点の間"
+};
+const roomGraph = {
+  "arena":["portrait-gallery","blind-spot-room","billiards-room","lounge"],
+  "portrait-gallery":["arena","study","mirror-room","confessional"],
+  "study":["portrait-gallery","library","hernando-room","billiards-room"],
+  "library":["study","reception-room","chapel","clinic"],
+  "reception-room":["library","lounge","servants-room","guest-room"],
+  "lounge":["reception-room","billiards-room","bathroom","arena"],
+  "billiards-room":["lounge","bar","arena","study"],
+  "bar":["billiards-room","dining-room","wine-cellar","underground-corridor"],
+  "dining-room":["bar","kitchen","pantry","bathroom"],
+  "kitchen":["dining-room","pantry","linen-room","wine-cellar"],
+  "pantry":["kitchen","wine-cellar","dining-room","linen-room"],
+  "wine-cellar":["pantry","costume-room","bar","kitchen"],
+  "costume-room":["wine-cellar","dressing-room","treatment-room","mirror-room"],
+  "dressing-room":["costume-room","mirror-room","guest-room","hernando-room"],
+  "mirror-room":["dressing-room","clinic","portrait-gallery","costume-room"],
+  "clinic":["mirror-room","treatment-room","torture-room","library"],
+  "treatment-room":["clinic","hernando-room","costume-room","torture-room"],
+  "hernando-room":["treatment-room","guest-room","study","dressing-room"],
+  "guest-room":["hernando-room","bathroom","dressing-room","reception-room"],
+  "bathroom":["guest-room","chapel","lounge","dining-room"],
+  "chapel":["bathroom","confessional","library","blind-spot-room"],
+  "confessional":["chapel","servants-room","blind-spot-room","portrait-gallery"],
+  "servants-room":["confessional","linen-room","reception-room","back-stairs"],
+  "linen-room":["servants-room","service-corridor","kitchen","pantry"],
+  "service-corridor":["linen-room","back-stairs","underground-corridor","underground-storage"],
+  "back-stairs":["service-corridor","underground-corridor","underground-storage","servants-room"],
+  "underground-corridor":["back-stairs","underground-storage","service-corridor","bar"],
+  "underground-storage":["underground-corridor","torture-room","back-stairs","service-corridor"],
+  "torture-room":["underground-storage","blind-spot-room","clinic","treatment-room"],
+  "blind-spot-room":["torture-room","arena","confessional","chapel"]
+};
+const ITEMS = {
+  rope:{name:"ロープ",beats:"blindfold"},
+  blindfold:{name:"目隠し",beats:"knife"},
+  knife:{name:"ナイフ",beats:"rope"}
+};
+
+/* 観戦用の簡略館内図。実際のゲーム接続 roomGraph と同じ30室を配置。 */
+const MAP_POS = {
+  /* 地上に近い上層 */
+  "reception-room":[250,55],
+  "portrait-gallery":[130,95],
+  "lounge":[370,95],
+  "study":[75,150],
+  "library":[185,150],
+  "billiards-room":[315,150],
+  "bar":[425,150],
+
+  /* 中央層 */
+  "mirror-room":[70,225],
+  "arena":[180,225],
+  "servants-room":[320,225],
+  "dining-room":[430,225],
+  "clinic":[80,300],
+  "confessional":[175,300],
+  "chapel":[300,300],
+  "kitchen":[420,300],
+
+  /* 下層 */
+  "treatment-room":[80,380],
+  "hernando-room":[180,380],
+  "guest-room":[300,380],
+  "bathroom":[420,380],
+  "costume-room":[75,455],
+  "dressing-room":[170,455],
+  "linen-room":[300,455],
+  "pantry":[420,455],
+
+  /* 地下層 */
+  "wine-cellar":[65,535],
+  "service-corridor":[155,535],
+  "back-stairs":[245,535],
+  "underground-corridor":[335,535],
+  "underground-storage":[425,535],
+  "torture-room":[150,595],
+  "blind-spot-room":[350,595]
+};
+
+const MAP_SHORT = {
+  "arena":"闘技場","portrait-gallery":"肖像","study":"書斎","library":"図書",
+  "reception-room":"応接","lounge":"ラウンジ","billiards-room":"ビリヤード","bar":"酒場",
+  "dining-room":"食堂","kitchen":"厨房","pantry":"パントリー","wine-cellar":"酒蔵",
+  "costume-room":"衣裳","dressing-room":"更衣","mirror-room":"鏡","clinic":"診察",
+  "treatment-room":"治療","hernando-room":"自室","guest-room":"客間","bathroom":"浴室",
+  "chapel":"礼拝","confessional":"告解","servants-room":"使用人","linen-room":"リネン",
+  "service-corridor":"使用人路","back-stairs":"裏階段","underground-corridor":"地下廊下",
+  "underground-storage":"地下倉庫","torture-room":"拷問","blind-spot-room":"盲点"
+};
+
+const RUNNER_TRAPS = [
+  {
+    id:"sticky-floor",
+    text:"粘着質な床に両足を取られ、無理に抜こうとして手までくっついた！",
+    hunter:"粘着質な床に両足と手を取られている。"
+  },
+  {
+    id:"melting-liquid",
+    text:"天井から透明な液を被ってしまった！服だけがまだらに溶ける！",
+    hunter:"天井から透明な液を被り、身動きが取れなくなっている。"
+  },
+  {
+    id:"wall-hole",
+    text:"壁穴を抜けようとして、腰がハマってしまった！",
+    hunter:"壁穴に腰がハマって動けなくなっている。"
+  },
+  {
+    id:"old-net",
+    text:"壁から垂れ下がった古い網に体が絡まり、腕を頭上に固定された！",
+    hunter:"古い網に絡まり、腕を頭上に固定されている。"
+  },
+  {
+    id:"low-passage",
+    text:"しゃがんで通ろうとした通路がさらに低い、尻を上げた姿勢で動けなくなった！",
+    hunter:"低い通路につかえて、不自然な姿勢のまま動けなくなっている。"
+  }
+];
+
+const RUNNER_TRAP_CHANCE = 0.35;
+const RUNNER_TRAP_LOCK_MS = 10 * 1000;
+const TRAP_PREFIX = "TRAP｜";
+
+const ROLE_NAME={runner:"逃亡者",hunter:"追撃者"};
+
+const TAB_PLAYER_KEY = "ec_chase_tab_player_key";
+
+function createTabPlayerKey(){
+  const key = crypto.randomUUID();
+  sessionStorage.setItem(TAB_PLAYER_KEY, key);
+  return key;
+}
+
+let tabPlayerKey = sessionStorage.getItem(TAB_PLAYER_KEY);
+if (!tabPlayerKey) tabPlayerKey = createTabPlayerKey();
+
+const S = {
+  game:null,
+  players:[],
+  messages:[],
+  myRole:null,
+
+  // 同じタブ内では再読み込みしても同一参加者として復帰。
+  // 別タブ・別ブラウザでは別参加者として扱う。
+  myKey:tabPlayerKey,
+
+  selectedRole:null,
+  selectedItem:null,
+  spectator:false,
+  realtime:null,
+  tick:null,
+  moveTimer:null,
+  staleTimer:null,
+  resetting:false,
+  switchingGame:false,
+  gameSwitchTimer:null,
+  interactionBusy:false,
+  timeoutCommitted:false,
+  lastHunterTrapNoticeId:null,
+  busy:false
+};
+
+const $=id=>document.getElementById(id);
+const screens=[...document.querySelectorAll(".screen")];
+function show(id){
+  const current=document.querySelector(".screen.active")?.id;
+  const changed=current!==id;
+  screens.forEach(x=>x.classList.toggle("active",x.id===id));
+  document.body.classList.toggle("game-compact",["chaseScreen","encounterScreen"].includes(id));
+  if(changed) window.scrollTo({top:0,behavior:"auto"});
+}
+function toast(t){$("toast").textContent=t;$("toast").classList.add("show");clearTimeout(toast.t);toast.t=setTimeout(()=>$("toast").classList.remove("show"),2200)}
+function setStatus(ok,text){$("statusText").textContent=text;$("status").classList.toggle("online",ok)}
+function rn(){return Date.now()}
+function roomName(id){return ROOM_NAMES[id]||id||"—"}
+function player(role){return S.players.find(p=>p.role===role)}
+function me(){return player(S.myRole)}
+function opponent(){return player(S.myRole==="runner"?"hunter":"runner")}
+function roleTaken(role){return !!player(role)}
+function fmt(ms){ms=Math.max(0,ms);const s=Math.ceil(ms/1000);return String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0")}
+function itemName(id){return ITEMS[id]?.name||"—"}
+function adjacent(a,b){return !!(a&&b&&roomGraph[a]?.includes(b))}
+
+function hasSpokenSinceArrival(){
+  const m=me();
+  if(!m||!S.game?.started_at) return false;
+  const startedAt=new Date(S.game.started_at).getTime();
+  const arrivedAt=m.move_complete_at ? new Date(m.move_complete_at).getTime() : 0;
+  const threshold=Math.max(startedAt,arrivedAt||0);
+  return S.messages.some(msg=>{
+    if(msg.channel!=="monologue"||msg.role!==S.myRole||!msg.created_at) return false;
+    return new Date(msg.created_at).getTime()>=threshold;
+  });
+}
+
+function trapById(id){
+  return RUNNER_TRAPS.find(t=>t.id===id)||null;
+}
+
+function parseTrapMessage(msg){
+  if(!msg || msg.channel!=="system" || typeof msg.message!=="string" || !msg.message.startsWith(TRAP_PREFIX)){
+    return null;
+  }
+  const parts=msg.message.split("｜");
+  const trap=trapById(parts[1]);
+  if(!trap)return null;
+  return {trap,room_id:msg.room_id,created_at:msg.created_at,raw:msg};
+}
+
+function latestRunnerTrap(){
+  const runner=player("runner");
+  if(!runner?.current_room)return null;
+
+  // 現在の部屋について、最新のトラップだけを見る。
+  // created_at と move_complete_at の数百ms差で取りこぼさないよう、
+  // 厳密な >= 比較はしない。
+  const candidates=S.messages
+    .map(parseTrapMessage)
+    .filter(Boolean)
+    .filter(x=>x.room_id===runner.current_room)
+    .sort((a,b)=>new Date(a.created_at)-new Date(b.created_at));
+
+  const latest=candidates.at(-1)||null;
+  if(!latest)return null;
+
+  // 直近の移動開始より前の古いトラップは無効。
+  const lastDeparture=runner.move_started_at
+    ? new Date(runner.move_started_at).getTime()
+    : 0;
+
+  if(lastDeparture && new Date(latest.created_at).getTime()<lastDeparture){
+    return null;
+  }
+
+  return latest;
+}
+
+function runnerTrapState(){
+  const t=latestRunnerTrap();
+  if(!t)return {trap:null,spoken:false,remaining:0};
+
+  const trapTime=new Date(t.created_at).getTime();
+
+  const spoken=S.messages
+    .filter(m=>m.channel==="monologue"&&m.role==="runner"&&m.created_at)
+    .filter(m=>new Date(m.created_at).getTime()>=trapTime)
+    .sort((a,b)=>new Date(a.created_at)-new Date(b.created_at))[0] || null;
+
+  if(!spoken){
+    return {trap:t,spoken:false,remaining:null};
+  }
+
+  const remaining=Math.max(
+    0,
+    new Date(spoken.created_at).getTime()+RUNNER_TRAP_LOCK_MS-Date.now()
+  );
+
+  return {trap:t,spoken:true,remaining};
+}
+
+async function maybeTriggerRunnerTrap(roomId){
+  if(S.myRole!=="runner" || !roomId || S.game.status!=="playing")return false;
+
+  const runner=me();
+  if(!runner)return false;
+
+  // 各部屋への到着ごとに35%で独立判定。
+  const shouldTrigger=Math.random()<RUNNER_TRAP_CHANCE;
+  if(!shouldTrigger)return false;
+
+  const trap=RUNNER_TRAPS[Math.floor(Math.random()*RUNNER_TRAPS.length)];
+
+  const {data,error}=await supabase
+    .from("chase_messages")
+    .insert({
+      game_id:S.game.id,
+      channel:"system",
+      role:"runner",
+      player_name:runner.player_name,
+      message:TRAP_PREFIX+trap.id+"｜"+trap.text,
+      room_id:roomId,
+      audible_to:"hunter"
+    })
+    .select("*")
+    .single();
+
+  if(error){
+    console.error("trap insert failed:",error);
+    toast("トラップ処理に失敗しました。");
+    return false;
+  }
+
+  // Realtimeを待たず、その場でローカルにも反映。
+  if(data && !S.messages.some(m=>m.id===data.id)){
+    S.messages.push(data);
+  }
+
+  await touchGame();
+
+  toast("TRAP！ "+trap.text);
+
+  // 逃亡者側ですぐTRAP表示を出す。
+  renderChase();
+
+  // 追撃者側へはRealtimeで届く。念のため最新状態も取得。
+  await refresh();
+
+  return true;
+}
+
+function escapeHtml(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]))}
+
+
+function latestActivityMs(){
+  if(!S.game) return 0;
+
+  const times = [];
+
+  if(S.game.updated_at) times.push(new Date(S.game.updated_at).getTime());
+  if(S.game.created_at) times.push(new Date(S.game.created_at).getTime());
+  if(S.game.started_at) times.push(new Date(S.game.started_at).getTime());
+
+  for(const p of S.players || []){
+    if(p.joined_at) times.push(new Date(p.joined_at).getTime());
+    if(p.move_started_at) times.push(new Date(p.move_started_at).getTime());
+    if(p.move_complete_at) times.push(new Date(p.move_complete_at).getTime());
+  }
+
+  for(const m of S.messages || []){
+    if(m.created_at) times.push(new Date(m.created_at).getTime());
+  }
+
+  return times.filter(Number.isFinite).reduce((a,b)=>Math.max(a,b),0);
+}
+
+function hasProtectedEncounterChat(){
+  if(!S.game?.started_at || !S.game?.ends_at || !S.game?.encounter_room) return false;
+
+  const started = new Date(S.game.started_at).getTime();
+  const deadline = new Date(S.game.ends_at).getTime();
+
+  // 3分の追跡時間内に遭遇後チャットが1件でも発生したゲームは
+  // 自動リセットしない。
+  return (S.messages || []).some(m => {
+    if(m.channel !== "encounter" || !m.created_at) return false;
+    const t = new Date(m.created_at).getTime();
+    return t >= started && t <= deadline;
+  });
+}
+
+async function touchGame(){
+  if(!S.game?.id || S.resetting) return;
+  const nowIso = new Date().toISOString();
+  const {error} = await supabase
+    .from("chase_games")
+    .update({updated_at:nowIso})
+    .eq("id",S.game.id)
+    .eq("active",true);
+  if(error) console.warn("touchGame:",error);
+}
+
+async function getFreshStaleSnapshot(gameId){
+  const [g,p,m] = await Promise.all([
+    supabase.from("chase_games").select("*").eq("id",gameId).eq("active",true).maybeSingle(),
+    supabase.from("chase_players").select("joined_at,move_started_at,move_complete_at").eq("game_id",gameId),
+    supabase.from("chase_messages").select("channel,created_at").eq("game_id",gameId).order("created_at",{ascending:false}).limit(20)
+  ]);
+
+  if(g.error) throw g.error;
+  if(p.error) throw p.error;
+  if(m.error) throw m.error;
+  if(!g.data) return null;
+
+  const times=[];
+  if(g.data.updated_at) times.push(new Date(g.data.updated_at).getTime());
+  if(g.data.created_at) times.push(new Date(g.data.created_at).getTime());
+  if(g.data.started_at) times.push(new Date(g.data.started_at).getTime());
+
+  for(const row of p.data||[]){
+    if(row.joined_at) times.push(new Date(row.joined_at).getTime());
+    if(row.move_started_at) times.push(new Date(row.move_started_at).getTime());
+    if(row.move_complete_at) times.push(new Date(row.move_complete_at).getTime());
+  }
+  for(const row of m.data||[]){
+    if(row.created_at) times.push(new Date(row.created_at).getTime());
+  }
+
+  return {
+    game:g.data,
+    lastActivity:times.filter(Number.isFinite).reduce((a,b)=>Math.max(a,b),0),
+    messages:m.data||[]
+  };
+}
+
+async function resetStaleGame(reason, expectedUpdatedAt){
+  if(!S.game?.id || S.resetting || S.interactionBusy) return;
+  S.resetting = true;
+
+  try{
+    const oldId = S.game.id;
+
+    // updated_at が確認時点から変わっていたら、誰かが操作したということ。
+    // その場合はリセットしない。
+    let q = supabase
+      .from("chase_games")
+      .update({
+        active:false,
+        status:"finished",
+        result_text:reason,
+        updated_at:new Date().toISOString()
+      })
+      .eq("id",oldId)
+      .eq("active",true);
+
+    if(expectedUpdatedAt){
+      q=q.eq("updated_at",expectedUpdatedAt);
+    }
+
+    const {data,error}=await q.select("id");
+    if(error) throw error;
+
+    if(!data || data.length!==1){
+      // 直前に誰かが操作したので自動リセットを中止。
+      await refresh();
+      return;
+    }
+
+    S.myRole = null;
+    S.selectedRole = null;
+    S.selectedItem = null;
+    S.myKey = createTabPlayerKey();
+    $("nameInput").value = "";
+
+    if(S.realtime){
+      await supabase.removeChannel(S.realtime);
+      S.realtime = null;
+    }
+
+    S.game = await ensureGame();
+    await refresh();
+    subscribe();
+    show("roleScreen");
+    toast("放置されたゲームを自動リセットしました。");
+  }catch(e){
+    console.error("auto reset failed:",e);
+  }finally{
+    S.resetting = false;
+  }
+}
+
+async function checkStaleGame(){
+  if(!S.game || S.resetting || S.interactionBusy || !S.game.active) return;
+
+  const gameId=S.game.id;
+
+  try{
+    // ローカル状態ではなく、リセット直前にSupabaseの最新状態を取り直す。
+    const snap=await getFreshStaleSnapshot(gameId);
+    if(!snap || S.game.id!==gameId || S.interactionBusy) return;
+
+    const g=snap.game;
+
+    // 遭遇後に3分以内のチャットが動いているゲームは保護。
+    if(g.started_at && g.ends_at && g.encounter_room){
+      const started=new Date(g.started_at).getTime();
+      const deadline=new Date(g.ends_at).getTime();
+      const protectedChat=snap.messages.some(row=>{
+        if(row.channel!=="encounter" || !row.created_at) return false;
+        const t=new Date(row.created_at).getTime();
+        return t>=started && t<=deadline;
+      });
+      if(protectedChat) return;
+    }
+
+    const idle=Date.now()-snap.lastActivity;
+    const preGameStatuses=new Set(["waiting","item_select","ready"]);
+
+    if(preGameStatuses.has(g.status) && idle>=PRE_GAME_IDLE_RESET_MS){
+      await resetStaleGame(
+        "ゲーム開始前に2分間操作がなかったため、自動リセットしました。",
+        g.updated_at
+      );
+      return;
+    }
+
+    const postGameStatuses=new Set(["playing","encounter","draw_decision","finished"]);
+    if(postGameStatuses.has(g.status) && g.started_at && idle>=POST_GAME_IDLE_RESET_MS){
+      await resetStaleGame(
+        "ゲーム開始後に5分間操作がなかったため、自動リセットしました。",
+        g.updated_at
+      );
+    }
+  }catch(e){
+    console.warn("stale check skipped:",e);
+  }
+}
+
+async function ensureGame(){
+  let {data,error}=await supabase.from("chase_games").select("*").eq("active",true).order("created_at",{ascending:false}).limit(1);
+  if(error) throw error;
+  if(data?.[0]) return data[0];
+  const ins=await supabase.from("chase_games").insert({active:true,status:"waiting",updated_at:new Date().toISOString()}).select().single();
+  if(ins.error){
+    const retry=await supabase.from("chase_games").select("*").eq("active",true).order("created_at",{ascending:false}).limit(1).single();
+    if(retry.error) throw ins.error;
+    return retry.data;
+  }
+  return ins.data;
+}
+async function findNewestActiveGame(retries=12, delayMs=250){
+  for(let i=0;i<retries;i++){
+    const {data,error}=await supabase
+      .from("chase_games")
+      .select("*")
+      .eq("active",true)
+      .order("created_at",{ascending:false})
+      .limit(1);
+    if(error) throw error;
+    if(data?.[0]) return data[0];
+    if(i<retries-1) await new Promise(resolve=>setTimeout(resolve,delayMs));
+  }
+  return null;
+}
+
+function clearLocalPlayerState(){
+  S.myRole=null;
+  S.selectedRole=null;
+  S.selectedItem=null;
+  S.spectator=false;
+  S.timeoutCommitted=false;
+  S.lastHunterTrapNoticeId=null;
+  S.myKey=createTabPlayerKey();
+  $("nameInput").value="";
+}
+
+async function adoptActiveGame(oldGameId=S.game?.id){
+  if(S.switchingGame || S.resetting) return;
+  S.switchingGame=true;
+  try{
+    const next=await findNewestActiveGame();
+    if(!next || next.id===oldGameId){
+      setStatus(false,"再接続中");
+      clearTimeout(S.gameSwitchTimer);
+      S.gameSwitchTimer=setTimeout(()=>adoptActiveGame(oldGameId),1000);
+      return;
+    }
+
+    clearTimeout(S.gameSwitchTimer);
+    S.gameSwitchTimer=null;
+
+    if(S.realtime){
+      await supabase.removeChannel(S.realtime);
+      S.realtime=null;
+    }
+
+    clearLocalPlayerState();
+    S.game=next;
+    S.players=[];
+    S.messages=[];
+
+    // 新ゲーム側の参加状況を即取得してから再購読する。
+    S.switchingGame=false;
+    await refresh();
+    subscribe();
+    setStatus(true,"接続済み");
+    show("roleScreen");
+    toast("ゲームがリセットされました。新しいゲームを開始できます。");
+  }catch(e){
+    console.error("game switch failed:",e);
+    setStatus(false,"再接続中");
+    clearTimeout(S.gameSwitchTimer);
+    S.gameSwitchTimer=setTimeout(()=>adoptActiveGame(oldGameId),1000);
+  }finally{
+    S.switchingGame=false;
+  }
+}
+
+async function refresh(){
+  if(!S.game || S.switchingGame) return;
+  const gameId=S.game.id;
+
+  const g=await supabase.from("chase_games").select("*").eq("id",gameId).single();
+  if(g.error) throw g.error;
+
+  // 誰かが全体リセットしたら、旧ゲームを見ている全端末も新ゲームへ移動する。
+  if(!g.data?.active){
+    S.game=g.data;
+    if(!S.resetting) await adoptActiveGame(gameId);
+    return;
+  }
+
+  const [p,m]=await Promise.all([
+    supabase.from("chase_players").select("*").eq("game_id",gameId),
+    supabase.from("chase_messages").select("*").eq("game_id",gameId).order("created_at",{ascending:true}).limit(300)
+  ]);
+  if(p.error) throw p.error;if(m.error) throw m.error;
+  if(S.game?.id!==gameId) return;
+  S.game=g.data;S.players=p.data||[];S.messages=m.data||[];
+  render();
+}
+function subscribe(){
+  if(S.realtime) supabase.removeChannel(S.realtime);
+  S.realtime=supabase.channel("el-capote-chase-"+S.game.id)
+    .on("postgres_changes",{event:"*",schema:"public",table:"chase_games",filter:"id=eq."+S.game.id},refresh)
+    .on("postgres_changes",{event:"*",schema:"public",table:"chase_players",filter:"game_id=eq."+S.game.id},refresh)
+    .on("postgres_changes",{event:"*",schema:"public",table:"chase_messages",filter:"game_id=eq."+S.game.id},refresh)
+    .subscribe();
+}
+async function boot(){
+  try{
+    S.game=await ensureGame();await refresh();subscribe();setStatus(true,"接続済み");
+    // 同一タブの参加者だけ自動復帰する。
+    const resumed=S.players.find(p=>p.player_key===S.myKey);
+    if(resumed){
+      S.myRole=resumed.role;
+      S.selectedRole=resumed.role;
+      S.selectedItem=resumed.item_id || null;
+    }else{
+      S.myRole=null;
+      S.selectedRole=null;
+      S.selectedItem=null;
+      $("nameInput").value="";
+    }
+    render();
+    S.tick=setInterval(tick,200);
+    S.staleTimer=setInterval(checkStaleGame,STALE_CHECK_INTERVAL_MS);
+    await checkStaleGame();
+  }catch(e){console.error(e);setStatus(false,"設定が必要");show("roleScreen");toast("Supabase設定SQLを先に実行してください")}
+}
+function render(){
+  if(!S.game || S.resetting)return;
+
+  if(
+    S.game.status==="playing" &&
+    S.game.ends_at &&
+    Date.now()<new Date(S.game.ends_at).getTime()
+  ){
+    S.timeoutCommitted=false;
+  }
+
+  const r=player("runner"),h=player("hunter");
+  $("runnerLobby").textContent=r?.player_name||"待機中…";$("hunterLobby").textContent=h?.player_name||"待機中…";
+
+  document.querySelectorAll("[data-role]").forEach(b=>{
+    const taken=roleTaken(b.dataset.role);
+    const mine=me()?.role===b.dataset.role;
+    b.disabled=taken&&!mine;b.classList.toggle("selected",S.selectedRole===b.dataset.role);
+  });
+
+  if(S.spectator){
+    show("spectateScreen");
+    try{renderSpectator()}catch(e){console.error("spectator refresh:",e)}
+    return;
+  }
+  if(!S.myRole){
+    if(document.querySelector(".screen.active")?.id==="nameScreen") return;
+    show("roleScreen");return;
+  }
+
+  const mine=me(); if(!mine){S.myRole=null;show("roleScreen");return}
+  if(S.game.status==="waiting"){show("lobbyScreen");return}
+  if(S.game.status==="item_select"||S.game.status==="ready"){
+    show("readyScreen");
+    $("startRoom").textContent=roomName(mine.current_room);
+    $("readyBtn").disabled=!!mine.ready;
+    $("readyText").textContent=mine.ready
+      ?"準備完了。相手を待っています。"
+      :"開始位置が決まりました。準備ができたら扉を開けてください。";
+    return;
+  }
+  if(S.game.status==="playing"){show("chaseScreen");renderChase();return}
+  if(S.game.status==="encounter"){show("encounterScreen");renderEncounter();return}
+  if(S.game.status==="draw_decision"){show("duelResultScreen");renderDuelResult();return}
+  if(S.game.status==="finished" && S.game.encounter_room){show("duelResultScreen");renderDuelResult();return}
+  if(S.game.status==="finished"){show("resultScreen");renderResult();return}
+}
+async function maybeAdvance(){
+  const r=player("runner"),h=player("hunter");
+  if(!r||!h)return;
+
+  // 二人が揃ったら、アイテム選択ではなく開始位置を決めてREADYへ。
+  if(S.game.status==="waiting"){
+    const [a,b]=pickStarts();
+    await Promise.all([
+      supabase.from("chase_players").update({
+        current_room:a,
+        item_id:null,
+        ready:false,
+        moving_to:null,
+        move_started_at:null,
+        move_complete_at:null
+      }).eq("game_id",S.game.id).eq("role","runner"),
+      supabase.from("chase_players").update({
+        current_room:b,
+        item_id:null,
+        ready:false,
+        moving_to:null,
+        move_started_at:null,
+        move_complete_at:null
+      }).eq("game_id",S.game.id).eq("role","hunter")
+    ]);
+
+    await supabase.from("chase_games").update({
+      status:"ready",
+      updated_at:new Date().toISOString()
+    }).eq("id",S.game.id).eq("status","waiting");
+    await refresh();
+    return;
+  }
+
+  if(S.game.status==="ready" && r.ready && h.ready){
+    const start=new Date(Date.now()+2500).toISOString();
+    const end=new Date(Date.now()+2500+GAME_MS).toISOString();
+
+    await supabase.from("chase_games").update({
+      status:"playing",
+      started_at:start,
+      ends_at:end,
+      encounter_room:null,
+      runner_continue:null,
+      hunter_continue:null,
+      result_text:null,
+      winner_role:null,
+      updated_at:new Date().toISOString()
+    }).eq("id",S.game.id).eq("status","ready");
+
+    S.lastHunterTrapNoticeId=null;
+    await logSystem("二人が館へ放たれた。三分間の追跡が始まる。");
+  }
+}
+function distances(start){
+  const d={[start]:0},q=[start];for(const x of q){for(const n of roomGraph[x])if(d[n]===undefined){d[n]=d[x]+1;q.push(n)}}return d
+}
+function pickStarts(){
+  const rooms=Object.keys(roomGraph);for(let i=0;i<100;i++){const a=rooms[Math.floor(Math.random()*rooms.length)],ds=distances(a);
+    const far=rooms.filter(x=>ds[x]>=4);if(far.length)return [a,far[Math.floor(Math.random()*far.length)]]}
+  return [rooms[0],rooms[15]]
+}
+async function join(){
+  const name=$("nameInput").value.trim();$("nameError").textContent="";
+  if(!name){$("nameError").textContent="名前を入力してください。";return}
+  const role=S.selectedRole;if(!role||S.interactionBusy)return;
+
+  S.interactionBusy=true;
+  try{
+    // まずゲーム側の時刻を更新し、「今まさに参加中」であることを確定。
+    await touchGame();
+
+    const res=await supabase.from("chase_players").insert({
+      game_id:S.game.id,
+      role,
+      player_name:name,
+      player_key:S.myKey
+    });
+
+    if(res.error){
+      $("nameError").textContent=res.error.code==="23505"
+        ?"その役割はすでに選ばれています。"
+        :"参加できませんでした。";
+      await refresh();
+      return;
+    }
+
+    S.myRole=role;
+    await touchGame();
+    await logSystem(name+" が"+ROLE_NAME[role]+"として館へ入った。");
+    await refresh();
+    await maybeAdvance();
+  }finally{
+    S.interactionBusy=false;
+  }
+}
+async function chooseEncounterItem(){
+  if(!S.selectedItem || S.interactionBusy || S.game.status!=="encounter")return;
+
+  S.interactionBusy=true;
+  try{
+    await touchGame();
+
+    await supabase.from("chase_players").update({
+      item_id:S.selectedItem
+    })
+    .eq("game_id",S.game.id)
+    .eq("role",S.myRole)
+    .eq("player_key",S.myKey);
+
+    await touchGame();
+    await refresh();
+    await resolveEncounterItems();
+  }finally{
+    S.interactionBusy=false;
+  }
+}
+
+async function ready(){
+  if(S.interactionBusy)return;
+  S.interactionBusy=true;
+  try{
+    await touchGame();
+    await supabase.from("chase_players").update({ready:true}).eq("game_id",S.game.id).eq("role",S.myRole).eq("player_key",S.myKey);
+    await touchGame();
+    await refresh();
+    await maybeAdvance();
+  }finally{
+    S.interactionBusy=false;
+  }
+}
+function tick(){
+  if(!S.game)return;
+  if(S.game.status==="playing"){
+    const left=new Date(S.game.ends_at).getTime()-rn();
+    const txt=fmt(left);$("timer").textContent=txt;$("timer").classList.toggle("warn",left<30000);$("specTimer").textContent=txt;
+    if(left<=0 && !S.busy) timeoutRunner();
+    finishMoveIfDue();
+  }
+  if(S.spectator) {
+    try{renderSpectator()}catch(e){console.error("spectator tick:",e)}
+  }else if(S.game.status==="playing" && S.myRole){
+    renderChase();
+  }
+}
+async function timeoutRunner(){
+  // TIME UP確定は逃亡者側の端末だけが担当する。
+  // 同じ端末でも一度だけ。
+  if(S.myRole!=="runner" || S.spectator || S.busy || S.timeoutCommitted) return;
+
+  S.busy=true;
+  S.timeoutCommitted=true;
+
+  try{
+    const {data,error}=await supabase
+      .from("chase_games")
+      .update({
+        status:"finished",
+        winner_role:"runner",
+        result_text:"三分間、追撃者と遭遇せず逃げ切った。",
+        updated_at:new Date().toISOString()
+      })
+      .eq("id",S.game.id)
+      .eq("status","playing")
+      .select("id");
+
+    if(error) throw error;
+
+    if(data && data.length===1){
+      // Realtimeを待たずローカルでも即終了扱いにする。
+      // TIME UP文言はchase_messagesへinsertしない。
+      // 観戦画面ではgameの結果から1件だけ生成表示する。
+      S.game.status="finished";
+      S.game.winner_role="runner";
+      S.game.result_text="三分間、追撃者と遭遇せず逃げ切った。";
+    }
+
+    await refresh();
+  }catch(e){
+    console.error("timeoutRunner:",e);
+    S.timeoutCommitted=false;
+  }finally{
+    S.busy=false;
+  }
+}
+function renderChase(){
+  const m=me();if(!m)return;$("currentRoom").textContent=roomName(m.current_room);
+  const moving=!!m.moving_to;
+  const trapState=runnerTrapState();
+
+  const trapBlocksMe=
+    S.myRole==="runner" &&
+    trapState.trap &&
+    (!trapState.spoken || trapState.remaining>0);
+
+  const canMove=hasSpokenSinceArrival()&&!moving&&!trapBlocksMe;
+
+  const op=opponent();
+  const pursuitBanner=$("pursuitBanner");
+  pursuitBanner.classList.toggle("hidden",!moving);
+  pursuitBanner.classList.toggle("runner",moving&&S.myRole==="runner");
+  pursuitBanner.classList.toggle("hunter",moving&&S.myRole==="hunter");
+
+  if(moving){
+    if(S.myRole==="runner"){
+      pursuitBanner.textContent="あなたは"+(op?.player_name||"追撃者")+"に追われている。";
+    }else{
+      pursuitBanner.textContent="逃げ回る"+(op?.player_name||"逃亡者")+"を追い詰めよう。";
+    }
+  }
+
+  const runnerTrapAlert=$("runnerTrapAlert");
+  const hunterTrapAlert=$("hunterTrapAlert");
+
+  if(S.myRole==="runner" && trapState.trap){
+    runnerTrapAlert.classList.remove("hidden");
+
+    const tail=!trapState.spoken
+      ? '<br><span class="trap-countdown">この状態で一言発言してください。</span>'
+      : trapState.remaining>0
+        ? '<br><span class="trap-countdown">発言後 '+Math.ceil(trapState.remaining/1000)+'秒 動けない！</span>'
+        : '<br>拘束から抜け出した。';
+
+    runnerTrapAlert.innerHTML=
+      '<strong>TRAP！</strong>'+
+      escapeHtml(trapState.trap.trap.text)+tail;
+  }else{
+    runnerTrapAlert.classList.add("hidden");
+  }
+
+  if(S.myRole==="hunter" && trapState.trap){
+    hunterTrapAlert.classList.remove("hidden");
+    hunterTrapAlert.innerHTML=
+      '<strong>'+escapeHtml(player("runner")?.player_name||"逃亡者")+'がトラップにかかった！</strong>'+
+      escapeHtml(trapState.trap.trap.hunter)+
+      '<br>現在地：<b>'+escapeHtml(roomName(trapState.trap.room_id))+'</b>';
+
+    // 新しいトラップ通知を受け取った瞬間だけ、追撃者の画面を上へ戻す。
+    // 通常のRealtime更新ではスクロール位置を維持する。
+    const trapNoticeId=
+      trapState.trap.raw?.id ||
+      (trapState.trap.room_id+"|"+trapState.trap.created_at+"|"+trapState.trap.trap.id);
+
+    if(S.lastHunterTrapNoticeId!==trapNoticeId){
+      S.lastHunterTrapNoticeId=trapNoticeId;
+      requestAnimationFrame(()=>{
+        window.scrollTo({top:0,behavior:"smooth"});
+      });
+    }
+  }else{
+    hunterTrapAlert.classList.add("hidden");
+  }
+
+  $("travelWrap").classList.toggle("hidden",!moving);
+
+  if(moving){
+    $("moveLockNote").textContent="移動中です。";
+  }else if(S.myRole==="runner" && trapState.trap && !trapState.spoken){
+    $("moveLockNote").textContent="トラップ中。一言発言するまで移動できません。";
+  }else if(S.myRole==="runner" && trapState.remaining>0){
+    $("moveLockNote").textContent="トラップ解除まで "+Math.ceil(trapState.remaining/1000)+"秒。";
+  }else{
+    $("moveLockNote").textContent=canMove
+      ?"一言を残した。次の部屋へ進めます。"
+      :"一言つぶやくと、次の部屋へ進めます。";
+  }
+  $("roomButtons").innerHTML=(roomGraph[m.current_room]||[]).map(id=>`<button class="room" data-move="${id}" ${canMove?"":"disabled"}><small>MOVE TO</small><strong>${escapeHtml(roomName(id))}</strong></button>`).join("");
+  document.querySelectorAll("[data-move]").forEach(b=>b.onclick=()=>moveTo(b.dataset.move));
+  renderSolo();
+
+  const isAdjacent=!!(op && !op.moving_to && !m.moving_to && adjacent(m.current_room,op.current_room));
+  $("adjacentAlert").classList.toggle("hidden",!isAdjacent);
+
+  // 独り言そのものは常に相手へ聞こえる。
+  // 隣室判定は、移動先4択の赤い警告だけに使う。
+  $("whisperBox").classList.add("hidden");
+}
+async function moveTo(dest){
+  const m=me();
+  if(!m||m.moving_to||S.game.status!=="playing"||!roomGraph[m.current_room]?.includes(dest))return;
+
+  if(S.myRole==="runner"){
+    const ts=runnerTrapState();
+
+    if(ts.trap && !ts.spoken){
+      toast("トラップ中です。まず一言発言してください。");
+      return;
+    }
+
+    if(ts.remaining>0){
+      toast("まだ動けません。あと"+Math.ceil(ts.remaining/1000)+"秒です。");
+      return;
+    }
+  }
+
+  if(!hasSpokenSinceArrival()){
+    toast("移動する前に、一言つぶやいてください。");
+    return;
+  }
+  const ms=Math.floor(MOVE_MIN+Math.random()*(MOVE_MAX-MOVE_MIN+1));const due=new Date(Date.now()+ms).toISOString();
+  await supabase.from("chase_players").update({moving_to:dest,move_started_at:new Date().toISOString(),move_complete_at:due}).eq("game_id",S.game.id).eq("role",S.myRole).eq("player_key",S.myKey);
+  await touchGame();
+  await logSystem(m.player_name+" が "+roomName(dest)+" へ向かった。");await refresh()
+}
+async function finishMoveIfDue(){
+  const m=me();if(!m?.moving_to||!m.move_complete_at)return;
+  const start=new Date(m.move_started_at).getTime(),end=new Date(m.move_complete_at).getTime(),now=rn();
+  const pct=Math.min(100,Math.max(0,(now-start)/(end-start)*100));$("travelBar").style.width=pct+"%";$("travelText").textContent=roomName(m.moving_to)+"へ移動中… "+Math.max(0,(end-now)/1000).toFixed(1)+"秒";
+  if(now<end||S.busy)return;
+  S.busy=true;
+  try{
+    const dest=m.moving_to;
+    const arrivedAt=new Date().toISOString();
+
+    await supabase.from("chase_players").update({
+      current_room:dest,
+      moving_to:null,
+      move_started_at:null,
+      move_complete_at:arrivedAt
+    })
+    .eq("game_id",S.game.id)
+    .eq("role",S.myRole)
+    .eq("player_key",S.myKey);
+
+    await touchGame();
+    await refresh();
+
+    // 逃亡者は到着直後に必ずここでトラップ判定。
+    if(S.myRole==="runner" && S.game.status==="playing"){
+      await maybeTriggerRunnerTrap(dest);
+    }
+
+    await checkEncounter();
+  }finally{S.busy=false}
+}
+async function checkEncounter(){
+  if(S.game.status!=="playing")return;
+
+  const r=player("runner"),h=player("hunter");
+  if(!r||!h||r.moving_to||h.moving_to||!r.current_room||r.current_room!==h.current_room)return;
+
+  // まず「遭遇」状態へ。ここではまだ勝敗を決めない。
+  const {data,error}=await supabase.from("chase_games").update({
+    status:"encounter",
+    encounter_room:r.current_room,
+    runner_continue:null,
+    hunter_continue:null,
+    updated_at:new Date().toISOString()
+  })
+  .eq("id",S.game.id)
+  .eq("status","playing")
+  .select("id");
+
+  if(error) throw error;
+
+  if(data&&data.length===1){
+    // この遭遇のアイテムはここから選び直す。
+    await Promise.all([
+      supabase.from("chase_players").update({item_id:null}).eq("game_id",S.game.id).eq("role","runner"),
+      supabase.from("chase_players").update({item_id:null}).eq("game_id",S.game.id).eq("role","hunter")
+    ]);
+    S.selectedItem=null;
+    await logSystem(roomName(r.current_room)+"で二人が遭遇した。");
+    await refresh();
+  }
+}
+
+async function resolveEncounterItems(){
+  if(S.game.status!=="encounter")return;
+
+  const r=player("runner"),h=player("hunter");
+  if(!r?.item_id||!h?.item_id)return;
+
+  const winner=compareItems(r.item_id,h.item_id);
+
+  if(winner==="draw"){
+    const {data,error}=await supabase.from("chase_games").update({
+      status:"draw_decision",
+      runner_continue:null,
+      hunter_continue:null,
+      updated_at:new Date().toISOString()
+    })
+    .eq("id",S.game.id)
+    .eq("status","encounter")
+    .select("id");
+
+    if(error) throw error;
+    if(data&&data.length===1){
+      await logSystem("アイテム勝負は引き分け。");
+    }
+  }else{
+    const {data,error}=await supabase.from("chase_games").update({
+      status:"finished",
+      winner_role:winner,
+      result_text:ROLE_NAME[winner]+"が遭遇時のアイテム勝負に勝った。",
+      updated_at:new Date().toISOString()
+    })
+    .eq("id",S.game.id)
+    .eq("status","encounter")
+    .select("id");
+
+    if(error) throw error;
+    if(data&&data.length===1){
+      await logSystem(ROLE_NAME[winner]+"がアイテム勝負に勝った。");
+    }
+  }
+
+  await refresh();
+}
+function compareItems(runnerItem,hunterItem){
+  if(runnerItem===hunterItem)return "draw";
+  if(ITEMS[runnerItem]?.beats===hunterItem)return "runner";
+  if(ITEMS[hunterItem]?.beats===runnerItem)return "hunter";
+  return "draw"
+}
+function renderSolo(){
+  const mine=S.messages.filter(x=>x.channel==="monologue");
+  $("soloChat").innerHTML=mine.slice(-40).map(x=>`<div class="msg ${x.role===S.myRole?"mine":""}"><small>${escapeHtml(x.player_name)} · ${escapeHtml(roomName(x.room_id))}</small>${escapeHtml(x.message)}</div>`).join("")||'<div class="tiny">まだ声はない。</div>';
+  $("soloChat").scrollTop=$("soloChat").scrollHeight
+}
+async function sendMonologue(){
+  const input=$("soloInput"),text=input.value.trim();if(!text)return;const m=me(),op=opponent();
+  const audible=op?.role||null;
+  input.value="";
+  await supabase.from("chase_messages").insert({game_id:S.game.id,channel:"monologue",role:S.myRole,player_name:m.player_name,message:text,room_id:m.current_room,audible_to:audible});
+  await touchGame();
+  await refresh();
+}
+function renderEncounter(){
+  const m=me();
+
+  $("encounterTitle").textContent="遭遇した！";
+  $("encounterText").textContent="同じ部屋に辿り着いた。移動は停止した。会話を続けながら、決着のアイテムを選べ。";
+
+  $("encounterItemSelect").classList.remove("hidden");
+
+  // 選択中はアイテムの公開欄を完全に隠す。
+  $("encounterReveal").classList.add("hidden");
+  $("drawActions").classList.add("hidden");
+  $("winnerEndActions").classList.add("hidden");
+  $("winnerWaiting").classList.add("hidden");
+
+  const myPicked=!!m?.item_id;
+
+  document.querySelectorAll("[data-encounter-item]").forEach(btn=>{
+    btn.disabled=myPicked;
+    btn.classList.toggle("selected",!myPicked&&S.selectedItem===btn.dataset.encounterItem);
+  });
+
+  $("encounterItemConfirm").disabled=myPicked||!S.selectedItem;
+
+  // 相手が何を選んだか、また選択済みかどうかもここでは表示しない。
+  $("encounterItemStatus").textContent=myPicked
+    ?"あなたの選択は確定した。相手の決定を待っています。"
+    :"ひとつ選んでください。相手の選択内容は見えません。";
+
+  renderEncounterChats();
+}
+
+function renderDuelResult(){
+  const m=me(),op=opponent();
+  if(!m)return;
+
+  const panel=$("duelResultPanel");
+  panel.classList.remove("win","draw","lose");
+
+  const isDraw=S.game.status==="draw_decision" || !S.game.winner_role;
+  const iAmWinner=!!S.game.winner_role && S.myRole===S.game.winner_role;
+
+  let word,copy,cls;
+
+  if(isDraw){
+    word="引き分け";
+    copy="互いの選択は拮抗した。決着はついていない。";
+    cls="draw";
+  }else if(iAmWinner){
+    word="完全勝利";
+    copy="あなたの選択が相手を制した。";
+    cls="win";
+  }else{
+    word="完全敗北";
+    copy="相手の選択があなたを上回った。";
+    cls="lose";
+  }
+
+  panel.classList.add(cls);
+  $("duelResultWord").textContent=word;
+  $("duelResultCopy").textContent=copy;
+  $("duelMyItem").textContent=itemName(m.item_id);
+  $("duelOpponentItem").textContent=itemName(op?.item_id);
+
+  $("duelDrawActions").classList.toggle("hidden",!isDraw);
+
+  const showWinnerEnd=S.game.status==="finished"&&iAmWinner;
+  const showWinnerWait=S.game.status==="finished"&&S.game.winner_role&&!iAmWinner;
+
+  $("duelWinnerEndActions").classList.toggle("hidden",!showWinnerEnd);
+  $("duelWinnerWaiting").classList.toggle("hidden",!showWinnerWait);
+
+  const myContinue=S.myRole==="runner"?S.game.runner_continue:S.game.hunter_continue;
+  $("duelContinueBtn").disabled=myContinue===true;
+  $("duelEndDrawBtn").disabled=myContinue===false;
+
+  renderEncounterChats();
+}
+
+function encounterMessages(){return S.messages.filter(x=>x.channel==="encounter")}
+function chatHtml(){return encounterMessages().map(x=>`<div class="msg ${x.role===S.myRole?"mine":""}"><small>${escapeHtml(x.player_name)}</small>${escapeHtml(x.message)}</div>`).join("")||'<div class="tiny">まだ会話はない。</div>'}
+function renderEncounterChats(){
+  const h=chatHtml();
+
+  $("encounterChat").innerHTML=h;
+  $("resultChat").innerHTML=h;
+  $("duelResultChat").innerHTML=h;
+
+  $("encounterChat").scrollTop=$("encounterChat").scrollHeight;
+  $("resultChat").scrollTop=$("resultChat").scrollHeight;
+  $("duelResultChat").scrollTop=$("duelResultChat").scrollHeight;
+}
+async function sendEncounter(inputId){
+  const input=$(inputId),text=input.value.trim();if(!text||!me())return;input.value="";
+  await supabase.from("chase_messages").insert({game_id:S.game.id,channel:"encounter",role:S.myRole,player_name:me().player_name,message:text,room_id:S.game.encounter_room||me().current_room});
+  await touchGame();
+}
+async function drawChoice(cont){
+  const field=S.myRole==="runner"?"runner_continue":"hunter_continue";
+  await supabase.from("chase_games").update({[field]:cont,updated_at:new Date().toISOString()}).eq("id",S.game.id).eq("status","draw_decision");
+  await refresh();const a=S.game.runner_continue,b=S.game.hunter_continue;
+  if(a===false||b===false){
+    await supabase.from("chase_games").update({status:"finished",winner_role:null,result_text:"引き分け後、どちらか一方が終了を選択した。",updated_at:new Date().toISOString()}).eq("id",S.game.id).eq("status","draw_decision");
+    await logSystem("引き分け。どちらか一方が終了を選び、ゲームはここで閉じられた。");
+  }else if(a===true&&b===true){
+    const [ra,rh]=pickStarts();
+    await Promise.all([
+      supabase.from("chase_players").update({
+        current_room:ra,
+        moving_to:null,
+        move_started_at:null,
+        move_complete_at:new Date().toISOString(),
+        item_id:null
+      }).eq("game_id",S.game.id).eq("role","runner"),
+      supabase.from("chase_players").update({
+        current_room:rh,
+        moving_to:null,
+        move_started_at:null,
+        move_complete_at:new Date().toISOString(),
+        item_id:null
+      }).eq("game_id",S.game.id).eq("role","hunter")
+    ]);
+    S.selectedItem=null;
+    await supabase.from("chase_games").update({status:"playing",runner_continue:null,hunter_continue:null,encounter_room:null,updated_at:new Date().toISOString()}).eq("id",S.game.id).eq("status","draw_decision");
+    await logSystem("両者が続行を選択。二人は再び離れた部屋へ放たれた。");
+  }
+}
+function renderResult(){
+  $("resultTitle").textContent=S.game.winner_role?ROLE_NAME[S.game.winner_role]+" WIN":"GAME END";
+  $("resultText").textContent=S.game.result_text||"ゲーム終了。";
+  renderEncounterChats();
+  $("resultChatPanel").classList.toggle("hidden",!S.game.encounter_room);
+  const iAmWinner=!!S.game.winner_role&&S.myRole===S.game.winner_role;
+  $("newGameBtn").classList.toggle("hidden",!iAmWinner);
+}
+async function newGame(){
+  if(S.game.status!=="finished")return;
+  if(S.game.winner_role && S.myRole!==S.game.winner_role){
+    toast("ゲームを終了できるのは勝者だけです。");
+    return;
+  }
+  await supabase.from("chase_games").update({active:false,updated_at:new Date().toISOString()}).eq("id",S.game.id);
+  sessionStorage.removeItem(TAB_PLAYER_KEY);
+  location.reload()
+}
+
+async function resetGameForEveryone(){
+  if(!S.game?.id || S.resetting || S.switchingGame) return;
+
+  const ok=window.confirm(
+    "現在のゲームを全員分リセットします。\n逃亡者・追撃者・READY・現在地・残り時間・会話・勝敗状態は新しいゲームに引き継がれません。\n\nリセットしますか？"
+  );
+  if(!ok) return;
+
+  const oldId=S.game.id;
+  const btn=$("resetGameBtn");
+  S.resetting=true;
+  if(btn){btn.disabled=true;btn.textContent="リセット中…";}
+
+  try{
+    // active=true の旧ゲームを落とせた1端末だけが、新しいゲームを作る。
+    // 同時押しされても新規ゲームが複数できにくいようにする。
+    const {data:closed,error:closeError}=await supabase
+      .from("chase_games")
+      .update({
+        active:false,
+        status:"finished",
+        result_text:"観戦画面から全体リセットされました。",
+        updated_at:new Date().toISOString()
+      })
+      .eq("id",oldId)
+      .eq("active",true)
+      .select("id");
+
+    if(closeError) throw closeError;
+
+    let next=null;
+    if(closed?.length===1){
+      const ins=await supabase
+        .from("chase_games")
+        .insert({active:true,status:"waiting",updated_at:new Date().toISOString()})
+        .select()
+        .single();
+      if(ins.error) throw ins.error;
+      next=ins.data;
+    }else{
+      // ほぼ同時に別の人が押した場合は、その人が作った新ゲームへ合流する。
+      next=await findNewestActiveGame();
+    }
+
+    if(!next) throw new Error("新しいゲームを取得できませんでした。");
+
+    if(S.realtime){
+      await supabase.removeChannel(S.realtime);
+      S.realtime=null;
+    }
+
+    clearLocalPlayerState();
+    S.game=next;
+    S.players=[];
+    S.messages=[];
+    S.resetting=false;
+
+    await refresh();
+    subscribe();
+    setStatus(true,"接続済み");
+    show("roleScreen");
+    toast("全体リセットしました。全員が新しいゲームへ移動します。");
+  }catch(e){
+    console.error("manual reset failed:",e);
+    toast("リセットに失敗しました。もう一度お試しください。");
+    try{
+      const next=(await findNewestActiveGame(4,250)) || (await ensureGame());
+      if(next && next.id!==oldId){
+        clearLocalPlayerState();
+        S.game=next;
+        S.players=[];
+        S.messages=[];
+        S.resetting=false;
+        await refresh();
+        subscribe();
+        show("roleScreen");
+      }else if(S.game){
+        subscribe();
+      }
+    }catch(recoverError){
+      console.error("reset recovery failed:",recoverError);
+    }
+  }finally{
+    S.resetting=false;
+    if(btn){btn.disabled=false;btn.textContent="ゲームを全体リセットする";}
+  }
+}
+async function logSystem(message){
+  if(!S.game)return;
+  await supabase.from("chase_messages").insert({game_id:S.game.id,channel:"system",message,player_name:"EL CAPOTE"});
+  await touchGame();
+}
+
+function mapPointForPlayer(p, now=Date.now()){
+  if(!p?.current_room || !MAP_POS[p.current_room]) return null;
+
+  const from=MAP_POS[p.current_room];
+  if(!p.moving_to || !MAP_POS[p.moving_to] || !p.move_started_at || !p.move_complete_at){
+    return {x:from[0],y:from[1],moving:false};
+  }
+
+  const start=new Date(p.move_started_at).getTime();
+  const end=new Date(p.move_complete_at).getTime();
+  const span=Math.max(1,end-start);
+  const progress=Math.min(1,Math.max(0,(now-start)/span));
+  const to=MAP_POS[p.moving_to];
+
+  return {
+    x:from[0]+(to[0]-from[0])*progress,
+    y:from[1]+(to[1]-from[1])*progress,
+    moving:progress<1
+  };
+}
+
+function renderChaseMap(){
+  const svg=$("chaseMap");
+  if(!svg) return;
+
+  const NS="http://www.w3.org/2000/svg";
+  svg.replaceChildren();
+
+  // 地上ライン。以下が「館の断面」のイメージ。
+  const ground=document.createElementNS(NS,"line");
+  ground.setAttribute("x1","24");
+  ground.setAttribute("y1","28");
+  ground.setAttribute("x2","476");
+  ground.setAttribute("y2","28");
+  ground.setAttribute("class","map-ground-line");
+  svg.appendChild(ground);
+
+  // 4択の論理接続を、そのまま“坑道”として描く。
+  // 位置が端でも、斜め・上下方向へ複数のトンネルを伸ばせるので問題ない。
+  const drawn=new Set();
+
+  for(const [room,neighbors] of Object.entries(roomGraph)){
+    const a=MAP_POS[room];
+    if(!a) continue;
+
+    for(const n of neighbors){
+      const b=MAP_POS[n];
+      if(!b) continue;
+
+      const key=[room,n].sort().join("|");
+      if(drawn.has(key)) continue;
+      drawn.add(key);
+
+      const path=document.createElementNS(NS,"path");
+
+      const dx=b[0]-a[0];
+      const dy=b[1]-a[1];
+
+      // アリの巣らしく、直線ではなく軽く曲がる坑道。
+      const c1x=a[0]+dx*.35;
+      const c1y=a[1]+dy*.15;
+      const c2x=a[0]+dx*.65;
+      const c2y=a[1]+dy*.85;
+
+      path.setAttribute(
+        "d",
+        `M ${a[0]} ${a[1]} C ${c1x} ${c1y}, ${c2x} ${c2y}, ${b[0]} ${b[1]}`
+      );
+      path.setAttribute("class","map-edge");
+      svg.appendChild(path);
+    }
+  }
+
+  // 各部屋を“空洞”として描く。
+  for(const [room,pos] of Object.entries(MAP_POS)){
+    const g=document.createElementNS(NS,"g");
+
+    const rect=document.createElementNS(NS,"rect");
+    rect.setAttribute("x",pos[0]-29);
+    rect.setAttribute("y",pos[1]-13);
+    rect.setAttribute("width","58");
+    rect.setAttribute("height","26");
+    rect.setAttribute("class","map-node");
+    g.appendChild(rect);
+
+    const label=document.createElementNS(NS,"text");
+    label.setAttribute("x",pos[0]);
+    label.setAttribute("y",pos[1]);
+    label.setAttribute("class","map-node-label");
+    label.textContent=MAP_SHORT[room]||"";
+    g.appendChild(label);
+
+    svg.appendChild(g);
+  }
+
+  const now=Date.now();
+  const r=player("runner"), h=player("hunter");
+  const rp=mapPointForPlayer(r,now), hp=mapPointForPlayer(h,now);
+
+  if(S.game.encounter_room && MAP_POS[S.game.encounter_room]){
+    const p=MAP_POS[S.game.encounter_room];
+    const ring=document.createElementNS(NS,"ellipse");
+    ring.setAttribute("cx",p[0]);
+    ring.setAttribute("cy",p[1]);
+    ring.setAttribute("rx","38");
+    ring.setAttribute("ry","22");
+    ring.setAttribute("class","map-encounter-ring");
+    svg.appendChild(ring);
+  }
+
+  function drawPlayer(point,p,role){
+    if(!point||!p) return;
+
+    const ring=document.createElementNS(NS,"circle");
+    ring.setAttribute("cx",point.x);
+    ring.setAttribute("cy",point.y);
+    ring.setAttribute("r","15");
+    ring.setAttribute("class","map-player-ring "+role);
+    svg.appendChild(ring);
+
+    const dot=document.createElementNS(NS,"circle");
+    dot.setAttribute("cx",point.x);
+    dot.setAttribute("cy",point.y);
+    dot.setAttribute("r","8");
+    dot.setAttribute("class","map-player "+role);
+    svg.appendChild(dot);
+
+    const label=document.createElementNS(NS,"text");
+    label.setAttribute("x",point.x+11);
+    label.setAttribute("y",point.y-12);
+    label.setAttribute("class","map-player-label");
+    label.textContent=p.player_name||ROLE_NAME[role];
+    svg.appendChild(label);
+  }
+
+  drawPlayer(rp,r,"runner");
+  drawPlayer(hp,h,"hunter");
+}
+
+function latestMonologueFor(role){
+  return S.messages
+    .filter(m=>m.channel==="monologue" && m.role===role)
+    .sort((a,b)=>new Date(a.created_at)-new Date(b.created_at))
+    .at(-1) || null;
+}
+
+function renderMapMonologues(){
+  const r=player("runner");
+  const h=player("hunter");
+  const rm=latestMonologueFor("runner");
+  const hm=latestMonologueFor("hunter");
+
+  const runnerMeta=$("mapRunnerMeta");
+  const hunterMeta=$("mapHunterMeta");
+  const runnerText=$("mapRunnerMonologue");
+  const hunterText=$("mapHunterMonologue");
+
+  if(!runnerMeta || !hunterMeta || !runnerText || !hunterText)return;
+
+  runnerMeta.textContent=r
+    ? (r.player_name+" / "+roomName(r.current_room))
+    : "逃亡者 未参加";
+
+  hunterMeta.textContent=h
+    ? (h.player_name+" / "+roomName(h.current_room))
+    : "追撃者 未参加";
+
+  runnerText.textContent=rm?.message || "まだ一言はない。";
+  hunterText.textContent=hm?.message || "まだ一言はない。";
+
+  runnerText.classList.toggle("empty",!rm);
+  hunterText.classList.toggle("empty",!hm);
+}
+
+function renderSpectator(){
+  try{
+
+    if(!S.game)return;const r=player("runner"),h=player("hunter");
+    $("specRunnerName").textContent=r?.player_name||"待機中";$("specHunterName").textContent=h?.player_name||"待機中";
+    $("specRunnerRoom").textContent=r?(r.moving_to?roomName(r.current_room)+" → "+roomName(r.moving_to):roomName(r.current_room)):"—";
+    $("specHunterRoom").textContent=h?(h.moving_to?roomName(h.current_room)+" → "+roomName(h.moving_to):roomName(h.current_room)):"—";
+    // 「遭遇表示」と「アイテム公開条件」は分ける。
+    // 遭遇表示は実際に同じ部屋で遭遇した時だけ。
+    // アイテムは、遭遇時またはゲーム終了後に公開する。
+    const didEncounter=!!S.game.encounter_room;
+    const bothPicked=!!(r?.item_id&&h?.item_id);
+    const itemsRevealed=bothPicked || S.game.status==="draw_decision" || S.game.status==="finished";
+
+    $("specRunnerItem").textContent=(itemsRevealed&&r?.item_id)?"ITEM "+itemName(r.item_id):"ITEM ?";
+    $("specHunterItem").textContent=(itemsRevealed&&h?.item_id)?"ITEM "+itemName(h.item_id):"ITEM ?";
+
+    if(didEncounter){
+      $("specEncounterAlert").textContent=itemsRevealed
+        ?"アイテムが公開された！"
+        :"遭遇！";
+    }
+
+    const spectatorTrap=runnerTrapState();
+  const specTrapAlert=$("specTrapAlert");
+
+  if(spectatorTrap.trap){
+    specTrapAlert.classList.remove("hidden");
+    specTrapAlert.innerHTML=
+      '<strong>'+escapeHtml(player("runner")?.player_name||"逃亡者")+'がトラップにかかった！</strong>'+
+      escapeHtml(spectatorTrap.trap.trap.text)+
+      '<br>現在地：<b>'+escapeHtml(roomName(spectatorTrap.trap.room_id))+'</b>';
+  }else{
+    specTrapAlert.classList.add("hidden");
+  }
+
+  $("specEncounterAlert").classList.toggle("hidden",!didEncounter);
+    try{renderChaseMap()}catch(e){console.error("spectator map render:",e)}
+    try{renderMapMonologues()}catch(e){console.error("spectator monologue render:",e)}
+    const left=S.game.ends_at?new Date(S.game.ends_at).getTime()-rn():GAME_MS;$("specTimer").textContent=S.game.status==="finished"?"00:00":fmt(left);
+    // 過去の同一SYSTEMメッセージがDBに複数残っていても、表示は1件だけにする。
+    const seenSystem=new Set();
+    const visibleMessages=S.messages.slice().reverse().filter(x=>{
+      if(x.channel!=="system") return true;
+      if((x.message||"").startsWith(TRAP_PREFIX)) return false;
+      const key=x.message||"";
+      if(seenSystem.has(key)) return false;
+      seenSystem.add(key);
+      return true;
+    });
+
+    let logHtml=visibleMessages.map(x=>{
+      const t=new Date(x.created_at).toLocaleTimeString("ja-JP",{hour:"2-digit",minute:"2-digit",second:"2-digit"});
+      const prefix=x.channel==="monologue"?"独り言":x.channel==="encounter"?"会話":"SYSTEM";
+      const where=x.room_id?" / "+roomName(x.room_id):"";
+      return `<div class="logrow"><time>${t}</time><strong>${escapeHtml(prefix)}</strong> ${escapeHtml(x.player_name||"")} ${escapeHtml(where)}<br>${escapeHtml(x.message)}</div>`
+    }).join("");
+
+    // 遭遇せずに逃亡者がTIME UP勝利した時だけ、結果から1件だけ生成する。
+    const escapedByTime =
+      S.game.status==="finished" &&
+      S.game.winner_role==="runner" &&
+      !S.game.encounter_room &&
+      S.game.result_text==="三分間、追撃者と遭遇せず逃げ切った。";
+
+    if(escapedByTime){
+      const time=S.game.ends_at
+        ? new Date(S.game.ends_at).toLocaleTimeString("ja-JP",{hour:"2-digit",minute:"2-digit",second:"2-digit"})
+        : "";
+      const synthetic=`<div class="logrow"><time>${escapeHtml(time)}</time><strong>SYSTEM</strong> EL CAPOTE<br>TIME UP。逃亡者が三分間を逃げ切った。</div>`;
+      logHtml=synthetic+logHtml;
+    }
+
+    $("spectateLog").innerHTML=logHtml||'<div class="tiny">まだ記録はありません。</div>'
+  }catch(e){
+    console.error("renderSpectator:",e);
+  }
+}
+
+document.querySelectorAll("[data-role]").forEach(b=>b.addEventListener("click",()=>{S.selectedRole=b.dataset.role;$("chosenRoleText").textContent=ROLE_NAME[S.selectedRole]+"として参加します。";show("nameScreen")}));
+$("backRoleBtn").onclick=()=>show("roleScreen");
+$("joinBtn").onclick=join;
+// 旧・開始前アイテム画面は使用しない。
+document.querySelectorAll("[data-encounter-item]").forEach(b=>b.onclick=()=>{
+  if(me()?.item_id)return;
+  S.selectedItem=b.dataset.encounterItem;
+  document.querySelectorAll("[data-encounter-item]").forEach(x=>x.classList.toggle("selected",x===b));
+  $("encounterItemConfirm").disabled=false;
+});
+$("encounterItemConfirm").onclick=chooseEncounterItem;
+$("readyBtn").onclick=ready;
+$("soloSend").onclick=sendMonologue;$("soloInput").addEventListener("keydown",e=>{if(e.key==="Enter")sendMonologue()});
+$("encounterSend").onclick=()=>sendEncounter("encounterInput");
+$("resultSend").onclick=()=>sendEncounter("resultInput");
+$("duelResultSend").onclick=()=>sendEncounter("duelResultInput");
+$("duelResultInput").addEventListener("keydown",e=>{if(e.key==="Enter")sendEncounter("duelResultInput")});
+
+$("continueBtn").onclick=()=>drawChoice(true);
+$("endDrawBtn").onclick=()=>drawChoice(false);
+$("winnerEndBtn").onclick=newGame;
+
+$("duelContinueBtn").onclick=()=>drawChoice(true);
+$("duelEndDrawBtn").onclick=()=>drawChoice(false);
+$("duelWinnerEndBtn").onclick=newGame;
+
+$("newGameBtn").onclick=newGame;
+$("resetGameBtn").onclick=resetGameForEveryone;
+$("spectateBtn").onclick=()=>{
+  S.spectator=true;
+  S.myRole=null;
+  show("spectateScreen");
+  try{renderSpectator()}catch(e){console.error("open spectator:",e)}
+};
+$("leaveSpectateBtn").onclick=()=>{
+  S.spectator=false;
+  show("roleScreen");
+  render();
+};
+
+boot();
+</script>
+</body>
+</html>
